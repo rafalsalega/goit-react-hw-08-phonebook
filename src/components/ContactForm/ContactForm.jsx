@@ -30,7 +30,7 @@ export const ContactForm = () => {
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         required
       />
-      <label htmlFor="number">Number</label>
+      <label htmlFor="number">Phone Number</label>
       <input
         className={css.label}
         type="tel"

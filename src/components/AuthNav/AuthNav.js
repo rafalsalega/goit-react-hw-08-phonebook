@@ -5,10 +5,10 @@ export const AuthNav = () => {
   return (
     <div>
       <NavLink className={css.link} to="/goit-react-hw-08-phonebook/register">
-        Register
+        Sign up [Register]
       </NavLink>
       <NavLink className={css.link} to="/goit-react-hw-08-phonebook/login">
-        Log In
+        Sign In 
       </NavLink>
     </div>
   );

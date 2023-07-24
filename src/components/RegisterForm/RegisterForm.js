@@ -25,7 +25,7 @@ export const RegisterForm = () => {
         <input type="text" name="name" />
       </label>
       <label className={css.label}>
-        Email
+        Email adress
         <input type="email" name="email" />
       </label>
       <label className={css.label}>

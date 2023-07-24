@@ -1,25 +1,60 @@
-import React from 'react';
-import { ContactForm } from './ContactForm/ContactForm';
-import { Filter } from './Filter/Filter';
-import { ContactList } from './ContactList/ContactList';
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchContacts } from '../redux/actions';
-import { Loader } from 'components/Loader/Loader';
+import { useEffect, lazy } from 'react';
+import { useDispatch } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import { Layout } from './Layout';
+import { PrivateRoute } from './PrivateRoute';
+import { RestrictedRoute } from './RestrictedRoute';
+import { refreshUser } from 'redux/auth/operations';
+import { useAuth } from 'hooks';
+import { Loader } from './Loader/Loader';
+
+const HomePage = lazy(() => import('../pages/Home'));
+const RegisterPage = lazy(() => import('../pages/Register'));
+const LoginPage = lazy(() => import('../pages/Login'));
+const ContactPage = lazy(() => import('../pages/Contact'));
 
 export const App = () => {
- const loading = useSelector(state => state.contacts.isLoading);   
- const dispatch = useDispatch();
-    useEffect(() => {
-      dispatch(fetchContacts());
-    }, [dispatch]);
-  return (
-    <>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <h2>Contacts</h2>
-      <Filter />
-      {loading ? <Loader /> : <ContactList />}
-    </>
+  const dispatch = useDispatch();
+  const { isRefreshing } = useAuth();
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  return isRefreshing ? (
+    <Loader/>
+  ) : (
+    <Routes>
+      <Route path="/goit-react-hw-08-phonebook" element={<Layout />}>
+        <Route index element={<HomePage />} />
+        <Route
+          path="/goit-react-hw-08-phonebook/register"
+          element={
+            <RestrictedRoute
+              redirectTo="/goit-react-hw-08-phonebook/contacts"
+              component={<RegisterPage />}
+            />
+          }
+        />
+        <Route
+          path="/goit-react-hw-08-phonebook/login"
+          element={
+            <RestrictedRoute
+              redirectTo="/goit-react-hw-08-phonebook/contacts"
+              component={<LoginPage />}
+            />
+          }
+        />
+        <Route
+          path="/goit-react-hw-08-phonebook/contacts"
+          element={
+            <PrivateRoute
+              redirectTo="/goit-react-hw-08-phonebook/login"
+              component={<ContactPage />}
+            />
+          }
+        />
+      </Route>
+    </Routes>
   );
-}
+};

@@ -4,15 +4,12 @@ const styles = {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+
     },
     title: {
       fontWeight: 500,
       fontSize: 48,
       textAlign: 'center',
-    },
-    picture: {
-    
-      marginTop: 25,
     },
   };
   
@@ -20,13 +17,9 @@ const styles = {
     return (
       <div style={styles.container}>
         <h1 style={styles.title}>
-          Phonebook welcome page{' '}
-          <img
-            style={styles.picture}
-            src="https://i.ibb.co/GdFyt3H/phone-book-1112.png"
-            alt="phonebook"
-          />
+          Welcome{' '}
         </h1>
+        <p> Use this page to create your individual phonebook </p>
       </div>
     );
   }

@@ -1,13 +1,16 @@
-import { Navigate } from 'react-router-dom';
-import { useAuth } from 'hooks';
+import { Outlet } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+import { AppBar } from './AppBar/AppBar';
+import { Suspense } from 'react';
 
-/**
- * - If the route is private and the user is logged in, render the component
- * - Otherwise render <Navigate> to redirectTo
- */
-
-export const PrivateRoute = ({ component: Component, redirectTo = '/' }) => {
-  const { isLoggedIn, isRefreshing } = useAuth();
-  const shouldRedirect = !isLoggedIn && !isRefreshing;
-  return shouldRedirect ? <Navigate to={redirectTo} /> : Component;
+export const Layout = () => {
+  return (
+    <div style={{ maxWidth: 960, margin: '0 auto', padding: '0 16px' }}>
+      <AppBar />
+      <Suspense fallback={null}>
+        <Outlet />
+      </Suspense>
+      <Toaster position="top-right" reverseOrder={false} />
+    </div>
+  );
 };
