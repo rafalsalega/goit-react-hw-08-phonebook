@@ -17,10 +17,10 @@ export default function App () {
   return (
     <>
       <Helmet>
-        <h1>Phonebook</h1>
+        <h1 >Phonebook</h1>
       </Helmet>
-      <ContactForm />
-      <h2>Contacts</h2>
+      <ContactForm  />
+      <h2 style={{margin: '50px 0 10px 0 '}} >Contacts</h2>
       <Filter />
       {loading ? <Loader /> : <ContactList />}
     </>

@@ -17,7 +17,7 @@ export const RegisterForm = () => {
     );
     form.reset();
   };
-
+  
   return (
     <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
       <label className={css.label}>
@@ -32,7 +32,7 @@ export const RegisterForm = () => {
         Password
         <input type="password" name="password" />
       </label>
-      <button type="submit">Register</button>
+      <button style={{ width: '50%', margin: '5px auto'}} type="submit">Register</button>
     </form>
   );
 };

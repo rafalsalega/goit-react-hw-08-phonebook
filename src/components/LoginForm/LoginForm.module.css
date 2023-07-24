@@ -1,5 +1,9 @@
 .form {
-  width: 320px;
+  margin-top: 50px;
+width: 320px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .label {

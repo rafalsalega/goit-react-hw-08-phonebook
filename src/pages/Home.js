@@ -1,10 +1,9 @@
 const styles = {
     container: {
-      minHeight: 'calc(60vh - 50px)',
+      minHeight: 'calc(100vh - 500px)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-
     },
     title: {
       fontWeight: 500,
@@ -17,9 +16,10 @@ const styles = {
     return (
       <div style={styles.container}>
         <h1 style={styles.title}>
-          Welcome{' '}
+        Hello!
+        <br />
+        Welcome to your Phonebook{' '}
         </h1>
-        <p> Use this page to create your individual phonebook </p>
       </div>
     );
   }
