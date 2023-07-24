@@ -1,13 +1,14 @@
 import React from 'react';
-import { ContactForm } from './ContactForm/ContactForm';
-import { Filter } from './Filter/Filter';
-import { ContactList } from './ContactList/ContactList';
+import { ContactForm } from '../components/ContactForm/ContactForm';
+import { Filter } from '../components/Filter/Filter';
+import { ContactList } from '../components/ContactList/ContactList';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchContacts } from '../redux/actions';
 import { Loader } from 'components/Loader/Loader';
+import { Helmet } from 'react-helmet';
 
-export const App = () => {
+export default function App () {
  const loading = useSelector(state => state.contacts.isLoading);   
  const dispatch = useDispatch();
     useEffect(() => {
@@ -15,7 +16,9 @@ export const App = () => {
     }, [dispatch]);
   return (
     <>
-      <h1>Phonebook</h1>
+      <Helmet>
+        <h1>Phonebook</h1>
+      </Helmet>
       <ContactForm />
       <h2>Contacts</h2>
       <Filter />
